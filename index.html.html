@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TravelBuddy Dark — Designed by Raj</title>
+  <meta name="description" content="TravelBuddy Dark — Explore India. Designed by Raj." />
+  <style>
+    :root {
+      --bg1: #071025;
+      --bg2: #0b1220;
+      --muted: #9fb0c8;
+      --neon: #33d1ff;
+      --accent: #ff6b88;
+      --card-glow: 0 10px 30px rgba(0,0,0,0.6);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
+      color: #e6f7ff;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+    header {
+      position: sticky; top: 0; z-index: 60;
+      background: linear-gradient(90deg, rgba(8,12,20,0.45), rgba(12,18,28,0.25));
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(6px);
+    }
+    .nav {
+      max-width: 1200px; margin: 0 auto; padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand { display: flex; gap: 12px; align-items: center; font-weight: 800; letter-spacing: 0.3px; }
+    .logo {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: linear-gradient(135deg,#05223a,#00263a);
+      display: flex; justify-content: center; align-items: center;
+      box-shadow: 0 10px 28px rgba(51,209,255,0.06), 0 2px 6px rgba(0,0,0,0.6) inset;
+      color: var(--neon); font-size: 18px; font-weight: 900;
+    }
+    nav a { color: var(--muted); text-decoration: none; margin-left: 14px; font-weight: 600; }
+    .hero {
+      max-width: 1200px; margin: 26px auto; width: calc(100% - 40px);
+      display: grid; grid-template-columns: 1fr 420px; gap: 20px; align-items: center;
+    }
+    .hero-left {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding: 26px; border-radius: 16px; box-shadow: var(--card-glow);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .hero h1 { margin: 0; font-size: 34px; color: var(--neon); text-shadow: 0 6px 30px rgba(51,209,255,0.06); }
+    .hero p { margin: 8px 0 18px 0; color: var(--muted); font-size: 15px; }
+    .search {
+      display: flex; gap: 10px; align-items: center;
+    }
+    .search input {
+      flex: 1; padding: 12px 14px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.01); color: #eaf8ff;
+      outline: none; font-size: 15px;
+      box-shadow: 0 6px 18px rgba(3,6,12,0.4) inset;
+    }
+    .search button {
+      padding: 12px 16px; border-radius: 10px; border: none; cursor: pointer;
+      background: linear-gradient(90deg, var(--neon), #6df0ff);
+      color: #001a20; font-weight: 800;
+      box-shadow: 0 8px 28px rgba(51,209,255,0.08);
+    }
+    .hero-photo {
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.6);
+      min-height: 220px; border: 1px solid rgba(255,255,255,0.03);
+    }
+    .hero-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: contrast(0.95) saturate(1.05);
+    }
+    .section { max-width: 1200px; margin: 18px auto; width: calc(100% - 40px); }
+    .grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 18px;
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 12px; overflow: hidden; position: relative;
+      border: 1px solid rgba(255,255,255,0.035);
+      min-height: 320px; display: flex; flex-direction: column;
+      box-shadow: var(--card-glow);
+      transform-origin: center;
+      transition: transform .36s cubic-bezier(.2,.9,.3,1), box-shadow .28s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    }
+    .imgwrap {
+      height: 170px; overflow: hidden;
+      background: linear-gradient(180deg,#071025,#0b1220);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s ease, filter .5s ease;
+      filter: saturate(1.02) contrast(0.95);
+    }
+    .card:hover img {
+      transform: scale(1.06);
+      filter: brightness(1.02);
+    }
+    .card-content {
+      padding: 14px; display: flex; gap: 10px;
+      flex-direction: column; flex: 1;
+    }
+    .card h3 {
+      margin: 0; font-size: 18px;
+      color: #dff9ff; text-shadow: 0 4px 18px rgba(0,0,0,0.6);
+    }
+    .card p {
+      margin: 6px 0 0 0; color: var(--muted);
+      font-size: 14px; flex: 1;
+    }
+    .card-foot {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 8px;
+      margin-top: 12px;
+    }
+    .save-btn {
+      display: inline-flex; gap: 10px; align-items: center;
+      padding: 8px 12px; border-radius: 12px; border: none;
+      cursor: pointer;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 6px 18px rgba(3,6,12,0.6);
+      color: var(--muted); font-weight: 700;
+      transition: transform .18s ease, box-shadow .2s ease;
+    }
+    .save-btn:active { transform: scale(.98); }
+    .heart {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: inline-grid; place-items: center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 8px 22px rgba(0,0,0,0.6);
+      position: relative; overflow: visible;
+    }
+    .heart svg {
+      width: 18px; height: 18px;
+      transition: transform .28s ease, fill .28s ease;
+      fill: none; stroke: var(--neon); stroke-width: 1.6;
+      filter: drop-shadow(0 6px 18px rgba(51,209,255,0.08));
+    }
+    .heart.active {
+      box-shadow: 0 10px 28px rgba(51,209,255,0.12);
+      background: linear-gradient(90deg, rgba(51,209,255,0.08), rgba(255,107,136,0.03));
+    }
+    .heart.active svg {
+      fill: var(--accent);
+      stroke: var(--accent);
+      transform: scale(1.08);
+      filter: drop-shadow(0 10px 30px rgba(255,107,136,0.12));
+    }
+    .favorites-modal {
+      position: fixed;
+      right: 18px; bottom: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding: 14px; border-radius: 12px;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.6);
+      max-width: 360px; z-index: 80;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .fav-list {
+      display: flex; flex-direction: column; gap: 8px;
+      max-height: 300px; overflow: auto; padding-right: 6px;
+    }
+    .fav-item {
+      display: flex; gap: 10px; align-items: center;
+      padding: 6px; border-radius: 8px;
+      background: rgba(255,255,255,0.01);
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+    .fav-item img {
+      width: 64px; height: 44px; object-fit: cover; border-radius: 6px;
+    }
+    .pop {
+      position: fixed; width: 120px; height: 80px; border-radius: 10px;
+      overflow: hidden; z-index: 40; opacity: 0;
+      transform: translate(var(--tx,0), var(--ty,0)) scale(.98) rotate(var(--rot,0deg));
+      transition: transform .8s cubic-bezier(.2,.9,.3,1), opacity .6s ease;
+      border: 2px solid rgba(255,255,255,0.03);
+      background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.6));
+      box-shadow: 0 18px 70px rgba(0,0,0,0.6);
+    }
+    .pop.show {
+      opacity: 1; transform: translate(0,0) scale(1) rotate(0deg);
+    }
+    footer {
+      margin-top: 26px; padding: 18px 20px;
+      text-align: center; color: var(--muted); font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,0.02);
+    }
+    @media (max-width: 1000px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 26px; }
+      .logo { width: 46px; height: 46px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">TB</div>
+        <div>
+          <div style="font-size:15px;color:var(--neon)">TravelBuddy — Dark</div>
+          <div style="color:var(--muted)">Designed by Raj</div>
+        </div>
+      </div>
+      <div style="display:flex; gap: 12px; align-items:center;">
+        <nav>
+          <a href="#dest">Destinations</a>
+          <a href="#favorites" id="open-fav" style="margin-left:10px">Favorites</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main style="flex:1">
+    <section class="hero" aria-label="hero">
+      <div class="hero-left">
+        <h1>Discover the Magic of Incredible India</h1>
+        <p>Handpicked Indian destinations — from heritage wonders to serene backwaters. Save favourites & enjoy new pop-ins each reload.</p>
+        <div class="search" role="search">
+          <input id="search" placeholder="Search destinations... (e.g. Goa, Taj Mahal)" />
+          <button id="searchBtn">Search</button>
+        </div>
+        <div style="margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;">
+          <small style="color:var(--muted)">Quick:</small>
+          <button class="chip" data-q="Goa" style="padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--neon);cursor:pointer">Goa</button>
+          <button class="chip" data-q="Taj Mahal" style="padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--neon);cursor:pointer">Taj Mahal</button>
+          <button class="chip" data-q="Kerala" style="padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--neon);cursor:pointer">Kerala</button>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img alt="India landmark" src="https://tse3.mm.bing.net/th/id/OIP.9XWX9H2ASpUKVpSRfEV8sQHaEK?pid=Api&P=0&h=180" loading="lazy" />
+      </div>
+    </section>
+
+    <section class="section" id="dest">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:10px;">
+        <h2 style="margin:0;color:var(--neon)">Featured Destinations</h2>
+        <div style="color:var(--muted)">12 icons • Designed by Raj</div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+  </main>
+
+  <div id="favorites" class="favorites-modal" style="display:none" aria-hidden>
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
+      <strong style="color:var(--neon)">Saved Destinations</strong>
+      <div style="display:flex; gap:8px;">
+        <button id="clearFav" style="padding:6px 8px;border-radius:8px;border:none;background:transparent;color:var(--muted);cursor:pointer">Clear</button>
+        <button id="closeFav" style="padding:6px 8px;border-radius:8px;border:none;background:transparent;color:var(--muted);cursor:pointer">✕</button>
+      </div>
+    </div>
+    <div class="fav-list" id="favList">
+      <div style="color:var(--muted)">No favorites yet — click heart on any card.</div>
+    </div>
+  </div>
+
+  <footer id="footer">
+    © 2025 Designed by Raj
+  </footer>
+
+  <script>
+    const destinations = [
+      { id:'taj', title:'Taj Mahal — Agra', desc:'Iconic white-marble mausoleum of eternal love.', imgSrc:'https://tse1.mm.bing.net/th/id/OIP.pMvXeH7qEJeMlkwMeUh1EwHaEQ?pid=Api&P=0&h=180' },
+      { id:'jaipur', title:'Hawa Mahal — Jaipur', desc:'The “Palace of Winds” in pink city.', imgSrc:'https://tse4.mm.bing.net/th/id/OIP.jTESyuByiWq_aE14iKg5-AHaEK?pid=Api&P=0&h=180' },
+      { id:'varanasi', title:'Varanasi Ghats', desc:'Sacred riverfront rituals along Ganges.', imgSrc:'https://tse2.mm.bing.net/th/id/OIP.KwF95sb4LNK4FlqPwhA4iQHaE8?pid=Api&P=0&h=180' },
+      { id:'goa', title:'Goa Beaches', desc:'Sun, sand and sea — tropical coastline.', imgSrc:'https://tse1.mm.bing.net/th/id/OIP.ZjszYUhq99IofgNCMOUIjwHaEc?pid=Api&P=0&h=180' },
+      { id:'ladakh', title:'Pangong Lake — Ladakh', desc:'High altitude azure lake amidst mountains.', imgSrc:'https://tse1.mm.bing.net/th/id/OIP.uutsbmzaRV3Ls2uZZVGitwHaFj?pid=Api&P=0&h=180' },
+      { id:'kerala', title:'Alleppey Backwaters', desc:'Serene houseboats in lush canals.', imgSrc:'https://tse4.mm.bing.net/th/id/OIP.s2-nR6jNqgqR964_aLPnXwHaE8?pid=Api&P=0&h=180' },
+      { id:'mumbai', title:'Marine Drive — Mumbai', desc:'Coastal boulevard & city skyline at dusk.', imgSrc:'https://tse2.mm.bing.net/th/id/OIP.uLgVmq8cTC4R4os1EIpF8wHaFj?pid=Api&P=0&h=180' },
+      { id:'rishikesh', title:'Rishikesh — Ganges', desc:'White water rafting and yoga capital.', imgSrc:'https://tse1.mm.bing.net/th/id/OIP.8iV9okQnAaujk0nrESjMKgHaE8?pid=Api&P=0&h=180' },
+      { id:'darjeeling', title:'Darjeeling Tea Gardens', desc:'Misty hills & sprawling tea terraces.', imgSrc:'https://tse3.mm.bing.net/th/id/OIP.ULGC-fBREjNK7rm7bwoVFgHaE8?pid=Api&P=0&h=180' },
+      { id:'amritsar', title:'Golden Temple — Amritsar', desc:'Sacred gold shrine with reflection pool.', imgSrc:'https://tse4.mm.bing.net/th/id/OIP.s8rx3W9gPiDox_9llEnzpwHaE8?pid=Api&P=0&h=180' },
+      { id:'delhi', title:'India Gate — Delhi', desc:'Historic war memorial & city icon.', imgSrc:'https://tse1.mm.bing.net/th/id/OIP.gK_vJKd7Ks3PvUbf6Tz1egHaE8?pid=Api&P=0&h=180' },
+      { id:'andaman', title:'Radhanagar Beach — Andaman', desc:'Turquoise waters & pristine sandy shores.', imgSrc:'https://tse1.mm.bing.net/th/id/OIP.MkXUhpcsaw0VwUjRsh7rNAHaE6?pid=Api&P=0&h=180' }
+    ];
+
+    const grid = document.getElementById('grid');
+
+    function renderCards(list) {
+      grid.innerHTML = '';
+      list.forEach((item, idx) => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        const dirs = ['-120%,-20%','120%,-10%','-10%,-120%','-5%,120%'];
+        const pick = dirs[Math.floor(Math.random()*dirs.length)];
+        card.style.transform = `translate(${pick}) scale(.98)`;
+        card.style.opacity = 0;
+        card.style.transition = 'transform .9s cubic-bezier(.2,.9,.3,1), opacity .7s ease';
+        const imgTag = `<img src="${item.imgSrc}" alt="${item.title}" loading="lazy" />`;
+        card.innerHTML = `
+          <div class="imgwrap">${imgTag}</div>
+          <div class="card-content">
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+            <div class="card-foot">
+              <small style="color:var(--muted)">${item.title.split(' — ')[1] || 'India'}</small>
+              <div style="display:flex; gap:8px; align-items:center;">
+                <button class="save-btn" data-id="${item.id}" title="Save">
+                  <span class="heart" data-id="${item.id}">
+                    <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.9-9-8.3C-1 8.5 4 3 8.6 6.1 11 8 12 9.3 12 9.3s1-1.3 3.4-3.2C20 3 25 8.5 21 12.7 19 16.1 12 21 12 21z"/></svg>
+                  </span>
+                  <span style="margin-left:6px;color:var(--muted)">Save</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+        setTimeout(() => {
+          card.style.transform = 'translate(0,0) scale(1)';
+          card.style.opacity = 1;
+        }, 120 + idx * 90);
+      });
+      attachSaveHandlers();
+    }
+
+    const LSKEY = 'travelbuddy_dark_correct_favs';
+    function getFavs() {
+      try { return JSON.parse(localStorage.getItem(LSKEY) || '[]'); }
+      catch(e) { return []; }
+    }
+    function setFavs(arr) {
+      localStorage.setItem(LSKEY, JSON.stringify(arr));
+      refreshFavUI();
+    }
+
+    function attachSaveHandlers() {
+      document.querySelectorAll('.save-btn').forEach(btn => {
+        btn.onclick = () => {
+          const id = btn.getAttribute('data-id');
+          toggleFavorite(id, btn);
+        };
+      });
+    }
+
+    function toggleFavorite(id, btn) {
+      const favs = getFavs();
+      const heart = btn.querySelector('.heart');
+      const idx = favs.indexOf(id);
+      if (idx === -1) {
+        favs.push(id);
+        setFavs(favs);
+        heart.classList.add('active');
+        burst(heart);
+      } else {
+        favs.splice(idx, 1);
+        setFavs(favs);
+        heart.classList.remove('active');
+      }
+    }
+
+    function burst(el) {
+      const pop = document.createElement('div');
+      pop.style.position = 'absolute';
+      pop.style.width = '10px'; pop.style.height = '10px'; pop.style.borderRadius = '50%';
+      pop.style.left = '50%'; pop.style.top = '10%'; pop.style.transform = 'translate(-50%,-50%)';
+      pop.style.background = 'radial-gradient(circle, rgba(255,107,136,0.95), rgba(51,209,255,0.6))';
+      pop.style.filter = 'blur(6px)'; pop.style.opacity = '0.95';
+      el.appendChild(pop);
+      pop.animate([
+        { transform: 'translate(-50%,-50%) scale(0.8)', opacity:1 },
+        { transform: 'translate(-50%,-200%) scale(2.2)', opacity:0 }
+      ], { duration: 650, easing:'cubic-bezier(.2,.9,.3,1)' });
+      setTimeout(()=> pop.remove(), 700);
+    }
+
+    const favBox = document.getElementById('favorites');
+    const favList = document.getElementById('favList');
+    function refreshFavUI() {
+      const favs = getFavs();
+      if (favs.length === 0) {
+        favList.innerHTML = '<div style="color:var(--muted)">No favorites yet — click heart on any card.</div>';
+        favBox.style.display = 'none';
+      } else {
+        favBox.style.display = 'block';
+        favList.innerHTML = '';
+        favs.forEach(id => {
+          const item = destinations.find(d => d.id === id);
+          if (item) {
+            const node = document.createElement('div');
+            node.className = 'fav-item';
+            node.innerHTML = `
+              <img src="${item.imgSrc}" alt="${item.title}" />
+              <div style="flex:1">
+                <div style="font-weight:700;color:#dff9ff">${item.title}</div>
+                <div style="font-size:13px;color:var(--muted)">${item.desc}</div>
+              </div>
+              <button data-id="${id}" style="background:transparent;border:none;cursor:pointer;color:var(--muted)">Remove</button>
+            `;
+            node.querySelector('button').onclick = () => {
+              const newFavs = getFavs().filter(x => x !== id);
+              setFavs(newFavs);
+              document.querySelectorAll('.heart[data-id="' + id + '"]').forEach(h => h.classList.remove('active'));
+            };
+            favList.appendChild(node);
+          }
+        });
+      }
+    }
+
+    document.getElementById('searchBtn').onclick = () => {
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      doSearch(q);
+    };
+    document.getElementById('search').onkeyup = (e) => { if (e.key === 'Enter') document.getElementById('searchBtn').click(); };
+
+    function doSearch(q) {
+      if (!q) {
+        renderCards(destinations);
+        return;
+      }
+      const filtered = destinations.filter(d => (d.title + ' ' + d.desc).toLowerCase().includes(q));
+      renderCards(filtered.length ? filtered : [{ id:'none', title:'No results', desc:'Try different keywords', imgSrc:'images/no-results.jpg' }]);
+    }
+
+    document.querySelectorAll('.chip').forEach(c => {
+      c.onclick = () => {
+        document.getElementById('search').value = c.dataset.q;
+        doSearch(c.dataset.q.toLowerCase());
+      };
+    });
+
+    document.getElementById('open-fav').onclick = (e) => {
+      e.preventDefault();
+      favBox.style.display = favBox.style.display === 'block' ? 'none' : 'block';
+    };
+    document.getElementById('closeFav').onclick = () => favBox.style.display = 'none';
+    document.getElementById('clearFav').onclick = () => {
+      setFavs([]);
+      document.querySelectorAll('.heart').forEach(h => h.classList.remove('active'));
+    };
+
+    function createRandomPops() {
+      const container = document.body;
+      const choices = [...destinations];
+      const max = 6;
+      for (let i = 0; i < max; i++) {
+        const pick = choices[Math.floor(Math.random() * choices.length)];
+        const el = document.createElement('div');
+        el.className = 'pop';
+        const from = Math.floor(Math.random() * 4);
+        if (from === 0) { el.style.left = '-18vw'; el.style.top = (10 + Math.random()*70) + 'vh'; el.style.setProperty('--tx','-18vw'); el.style.setProperty('--ty','0'); el.style.setProperty('--rot','-8deg'); }
+        if (from === 1) { el.style.left = '110vw'; el.style.top = (10 + Math.random()*70) + 'vh'; el.style.setProperty('--tx','18vw'); el.style.setProperty('--ty','0'); el.style.setProperty('--rot','8deg'); }
+        if (from === 2) { el.style.left = (10 + Math.random()*80) + 'vw'; el.style.top = '-18vh'; el.style.setProperty('--tx','0'); el.style.setProperty('--ty','-18vh'); el.style.setProperty('--rot','-6deg'); }
+        if (from === 3) { el.style.left = (10 + Math.random()*80) + 'vw'; el.style.top = '110vh'; el.style.setProperty('--tx','0'); el.style.setProperty('--ty','18vh'); el.style.setProperty('--rot','6deg'); }
+        el.innerHTML = '<img src="' + pick.imgSrc + '" alt="' + pick.title + '" style="width:100%;height:100%;object-fit:cover" />';
+        container.appendChild(el);
+        setTimeout(() => el.classList.add('show'), 90 + i*140);
+        setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 400) }, 3800 + i*600);
+      }
+    }
+
+    function markSavedHearts() {
+      getFavs().forEach(id => {
+        document.querySelectorAll('.heart[data-id="' + id + '"]').forEach(h => h.classList.add('active'));
+      });
+    }
+
+    setInterval(() => {
+      const el = document.querySelector('.hero h1');
+      if (el) el.animate([{ filter: 'brightness(1.08)' }, { filter: 'brightness(1)' }], { duration: 2600, easing:'ease-in-out' });
+    }, 3000);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCards(destinations);
+      refreshFavUI();
+      markSavedHearts();
+      setTimeout(createRandomPops, 350);
+      setInterval(() => createRandomPops(), 15000);
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+          const t = document.querySelector(this.getAttribute('href'));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
